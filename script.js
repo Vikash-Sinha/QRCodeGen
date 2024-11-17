@@ -65,7 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
           const bgImage = new Image();
           bgImage.src = URL.createObjectURL(bgImageInput.files[0]);
           bgImage.onload = () => {
+            ctx.save(); 
+            ctx.globalAlpha = 0.5;
             ctx.drawImage(bgImage, 100, qrYPos, canvasSize, canvasSize);
+            ctx.restore();
             ctx.drawImage(qrImage, 100, qrYPos, canvasSize, canvasSize);
             addLogo(ctx, qrCanvas, qrYPos);
           };
