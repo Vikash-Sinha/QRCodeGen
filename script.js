@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Add company description
         ctx.fillStyle = '#000000'; // Text color
-        ctx.font = 'italic 24px Arial'; // Italic font
+        ctx.font = 'italic 24px Rubik Vinyl'; // Italic font
         ctx.textAlign = 'center'; // Center the text
 
         const words = companyDesc.split(' ');
