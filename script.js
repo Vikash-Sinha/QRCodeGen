@@ -80,9 +80,34 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         // Add company description
-        ctx.fillStyle = '#000000';
-        ctx.font = 'italic 24px Arial';
-        ctx.fillText(companyDesc, (canvasSize / 2)+100, canvasSize + 160);
+        ctx.fillStyle = '#000000'; // Text color
+        ctx.font = 'italic 24px Arial'; // Italic font
+        ctx.textAlign = 'center'; // Center the text
+
+        const words = companyDesc.split(' ');
+        let line = '';
+        let maxWidth = 400;
+        let lineHeight = 30;
+        let x=(canvasSize / 2) + 100;
+        let lineY = canvasSize + 150;
+
+        for (let i = 0; i < words.length; i++) {
+          const testLine = line + words[i] + ' ';
+          const testWidth = ctx.measureText(testLine).width;
+
+          if (testWidth > maxWidth && line.length > 0) {
+            ctx.fillText(line.trim(), x, lineY); // Draw the line
+            line = words[i] + ' '; // Start a new line
+            lineY += lineHeight; // Move to the next line position
+          } else {
+            line = testLine; // Keep adding words to the current line
+          }
+        }
+
+        // Draw the last line
+        if (line) {
+          ctx.fillText(line.trim(), x, lineY);
+        }
 
         qrContainer.appendChild(qrCanvas);
         downloadBtn.style.display = 'block';
